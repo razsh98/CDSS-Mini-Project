@@ -46,4 +46,4 @@ def input_check(name, date, hours,minutes):
     if name=="" or not isinstance(hours,int) or not isinstance(minutes,int):
         return 1==0
 
-run_window()
+# run_window()

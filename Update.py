@@ -17,14 +17,25 @@ def run_window():
     lbl_time = create_label(col=2, row=3, text="hh:mm", window=update_window)
     ent_hour = create_Spinbox(col=3, row=3, max=23, min=0, window=update_window)
     ent_minute = create_Spinbox(col=4, row=3, max=59, min=0, window=update_window)
-    lbl_value = create_label(col=2, row=4, text="value", window=update_window)
-    ent_value = create_entery(col=3, row=4, text="value", window=update_window)
-    btn_submit = create_button(col=4, row=5, text="submit", command=retrive, window=update_window)
+
+    global ent_date_view, ent_hour_view, ent_minute_view
+    lbl_date_view = create_label(col=2, row=4, text="date view", window=update_window)
+    ent_date_view = create_DateEntry(col=3, row=4, window=update_window)
+    lbl_time_view = create_label(col=2, row=5, text="hh:mm", window=update_window)
+    ent_hour_view = create_Spinbox(col=3, row=5, max=23, min=0, window=update_window)
+    ent_minute_view = create_Spinbox(col=4, row=5, max=59, min=0, window=update_window)
+
+    lbl_value = create_label(col=2, row=6, text="value", window=update_window)
+    ent_value = create_entery(col=3, row=6, text="value", window=update_window)
+
+    btn_submit = create_button(col=4, row=7, text="submit", command=update, window=update_window)
+
+
     DB = pd.read_excel("C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project\\project_db_test_publish.xlsx")
     lbl_vaule = create_label(col=4, row=6, text="", window=update_window)
     update_window.mainloop()
 
-def retrive():
+def update():
     if DB==None:
         show_alert(title="DB loading error", info="cant load th BI DB")
     name=ent_name.get()
@@ -41,4 +52,4 @@ def input_check(name, date, hours,minutes):
     if name=="" or not isinstance(hours,int) or not isinstance(minutes,int):
         return 1==0
 
-run_window()
+# run_window()
