@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkcalendar import DateEntry
+import requests as rq
 
 def create_button(col, row, text, command, window):
     height = 1
@@ -45,4 +46,9 @@ def show_alert(title="Title",info="a Tk MessageBox"):
 def close_window(window):
     messagebox.showinfo("Alert", "This window will now close")
     window.destroy()
+
+def parse_lionicNum(num):
+    response = rq.get("https://fhir.loinc.org/CodeSystem/$lookup?system=http://loinc.org&code=4544-3")
+    print(response.status_code)
+
 
