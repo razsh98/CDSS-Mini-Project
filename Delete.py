@@ -11,7 +11,7 @@ def run_window():
     delete_window = tk.Tk()
     delete_window.geometry("500x350")
     lbl_name = create_label(col=2, row=1, text="name patient", window=delete_window)
-    ent_name = create_entery(col=3, row=1, text="name", window=delete_window)
+    ent_name = create_entry(col=3, row=1, text="name", window=delete_window)
 
     lbl_date = create_label(col=2, row=2, text="date", window=delete_window)
     ent_date=create_DateEntry(col=3,row=2,window=delete_window)
