@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 from UI_Elements import *
 import pandas as pd
-import pandas as pd
 
 
 dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project\\project_db_test_publish.xlsx"
