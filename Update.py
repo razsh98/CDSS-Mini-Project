@@ -35,7 +35,7 @@ def run_window():
 
     btn_submit = create_button(col=4, row=7, text="submit", command=update, window=update_window)
 
-    DB = pd.read_excel(raz_path)
+    DB = pd.read_excel(dvir_path)
     lbl_vaule = create_label(col=4, row=6, text="", window=update_window)
     update_window.mainloop()
 

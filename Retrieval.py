@@ -31,7 +31,7 @@ def run_window():
     ent_minute_view = create_Spinbox(col=4, row=5, max=59, min=0, window=retrieval_window)
 
     btn_submit = create_button(col=4, row=6, text="submit", command=retrive, window=retrieval_window)
-    DB=pd.read_excel(raz_path)
+    DB=pd.read_excel(dvir_path)
     lbl_vaule = create_label(col=4, row=8,text="", window=retrieval_window)
     retrieval_window.mainloop()
 

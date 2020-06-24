@@ -30,7 +30,7 @@ def run_window():
     ent_minute_view = create_Spinbox(col=4, row=5, max=59, min=0, window=delete_window)
 
     btn_submit = create_button(col=4, row=7, text="submit", command=delete, window=delete_window)
-    DB = pd.read_excel(raz_path)
+    DB = pd.read_excel(dvir_path)
     lbl_value = create_label(col=4, row=5, text="", window=delete_window)
     delete_window.mainloop()
 
