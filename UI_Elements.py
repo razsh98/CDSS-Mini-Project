@@ -42,7 +42,7 @@ def create_DateEntry(col, row, window):
     return de
 
 
-def create_Spinbox(col, row, max, min, window):
+def create_spinbox(col, row, max, min, window):
     sb = tk.Spinbox(window, from_=min, to=max)
     sb.grid(row=row, column=col)
     return sb
