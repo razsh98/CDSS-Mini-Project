@@ -1,9 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkcalendar import DateEntry
-import requests as rq
-
-api_url = "https://fhir.loinc.org/CodeSystem/$lookup?system=http://loinc.org&code=4544-3"
 
 
 def create_button(col, row, text, command, window):
@@ -19,19 +16,15 @@ def create_button(col, row, text, command, window):
 
 
 def create_entry(col, row, text, window):
-    height = 1
-    width = 15
     entry = tk.Entry(window, text=text)
     entry.grid(column=col, row=row)
     return entry
 
 
-def create_label(col, row, text, window):
-    height = 1
-    width = 15
+def create_label(col, row, text, window, colspan=1, rowspan=1):
     label = tk.Label(window,
                      text=text)
-    label.grid(column=col, row=row)
+    label.grid(column=col, row=row, columnspan=colspan, rowspan=rowspan)
     return label
 
 
@@ -55,8 +48,3 @@ def show_alert(title="Title", info="a Tk MessageBox"):
 def close_window(window):
     messagebox.showinfo("Alert", "This window will now close")
     window.destroy()
-
-
-def parse_loinc_num(num):
-    response = rq.get(api_url)
-    print(response.status_code)

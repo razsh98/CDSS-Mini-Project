@@ -2,15 +2,17 @@ import DB_handler
 from UI_Elements import *
 
 dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project\\project_db_test_publish.xlsx"
-raz_path = "project_db_test_publish.xlsx"
+raz_path = "project_db_test_publish_1.xlsx"
 
 ent_first_name = ent_last_name = ent_date = ent_hour = ent_minute = lbl_value = tk.Entry()
 ent_date_view = ent_hour_view = ent_minute_view = tk.Entry()
 
+last_row = 0
+
 
 def run_window():
     global ent_first_name, ent_last_name, ent_date, ent_hour, ent_minute, lbl_value
-    global ent_date_view, ent_hour_view, ent_minute_view
+    global ent_date_view, ent_hour_view, ent_minute_view, last_row
 
     retrieval_window = tk.Tk()
     retrieval_window.geometry("500x350")
@@ -31,7 +33,7 @@ def run_window():
     ent_minute_view = create_spinbox(col=4, row=6, max=59, min=0, window=retrieval_window)
 
     btn_submit = create_button(col=4, row=7, text="submit", command=retrieve, window=retrieval_window)
-    lbl_value = create_label(col=4, row=9, text="", window=retrieval_window)
+    lbl_value = create_label(col=0, row=9, text="", window=retrieval_window, colspan=5, rowspan=10)
     retrieval_window.mainloop()
 
 
@@ -48,16 +50,18 @@ def retrieve():
             valid_start_time != "" and \
             transaction_time != "":
 
-        answer = ""
-        lbl_value['text'] = answer
         print("hello")
-        DB_handler.retrieve(
+        answer = DB_handler.retrieve(
             first_name=first_name,
             last_name=last_name,
             valid_start_time=valid_start_time,
             transaction_time=transaction_time,
             limit=1
         )
+        spaced_entries = ''
+        for entry in answer.iterrows():
+            spaced_entries = repr(entry) + '\n'
+        lbl_value['text'] = spaced_entries
 
 
 def parse_date_time_input(date, hours, minutes):

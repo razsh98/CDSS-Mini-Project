@@ -3,7 +3,7 @@ import pandas as pd
 from UI_Elements import *
 
 dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project\\project_db_test_publish.xlsx"
-raz_path = "project_db_test_publish.xlsx"
+raz_path = "project_db_test_publish_1.xlsx"
 
 
 def run_window():
