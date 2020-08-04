@@ -5,7 +5,8 @@ dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project1\\project_
 raz_path = "project_db_test_publish_1.xlsx"
 
 
-def retrieve(first_name, last_name, valid_start_time, transaction_time, valid_start_time_end=None, limit=None):
+def retrieve(first_name, last_name, valid_start_time, transaction_time,
+             valid_start_time_end=None, limit=None, loinc_num=None ):
     DB = pd.read_excel(raz_path)
     # DB = DB.query("First_name  == 'Eyal'")
     # DB = DB.query("Last_name == 'Rothman'")
@@ -17,6 +18,7 @@ def retrieve(first_name, last_name, valid_start_time, transaction_time, valid_st
     DB = DB.query("Transaction_time >= '" + transaction_time + "'")
 
     if limit is None:
+        DB = DB.query("LOINC-NUM >= '" + loinc_num + "'")
         DB = DB.query("Valid_start_time >= '" + valid_start_time + "'")
         DB = DB.query("Valid_start_time <= '" + valid_start_time_end + "'")
         limit_clause = " ;"

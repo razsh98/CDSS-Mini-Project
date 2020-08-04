@@ -15,17 +15,17 @@ def run_window():
     ent_name = create_entry(col=3, row=1, text="name", window=delete_window)
 
     lbl_date = create_label(col=2, row=2, text="date", window=delete_window)
-    ent_date = create_DateEntry(col=3, row=2, window=delete_window)
+    ent_date = create_date_entry(col=3, row=2, window=delete_window)
     lbl_time = create_label(col=2, row=3, text="hh:mm", window=delete_window)
-    ent_hour = create_spinbox(col=3, row=3, max=23, min=0, window=delete_window)
-    ent_minute = create_spinbox(col=4, row=3, max=59, min=0, window=delete_window)
+    ent_hour = create_spinbox(col=3, row=3, max_value=23, min_value=0, window=delete_window)
+    ent_minute = create_spinbox(col=4, row=3, max_value=59, min_value=0, window=delete_window)
 
     global ent_date_view, ent_hour_view, ent_minute_view
     lbl_date_view = create_label(col=2, row=4, text="date view", window=delete_window)
-    ent_date_view = create_DateEntry(col=3, row=4, window=delete_window)
+    ent_date_view = create_date_entry(col=3, row=4, window=delete_window)
     lbl_time_view = create_label(col=2, row=5, text="hh:mm", window=delete_window)
-    ent_hour_view = create_spinbox(col=3, row=5, max=23, min=0, window=delete_window)
-    ent_minute_view = create_spinbox(col=4, row=5, max=59, min=0, window=delete_window)
+    ent_hour_view = create_spinbox(col=3, row=5, max_value=23, min_value=0, window=delete_window)
+    ent_minute_view = create_spinbox(col=4, row=5, max_value=59, min_value=0, window=delete_window)
 
     btn_submit = create_button(col=4, row=7, text="submit", command=delete, window=delete_window)
     DB = pd.read_excel(raz_path)

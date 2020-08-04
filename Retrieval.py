@@ -4,35 +4,43 @@ from UI_Elements import *
 dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project\\project_db_test_publish.xlsx"
 raz_path = "project_db_test_publish_1.xlsx"
 
-ent_first_name = ent_last_name = ent_date = ent_hour = ent_minute = lbl_value = tk.Entry()
-ent_date_view = ent_hour_view = ent_minute_view = tk.Entry()
-
-last_row = 0
+# ent_first_name = ent_last_name = ent_date = ent_hour = ent_minute = lbl_value = tk.Entry()
+# ent_date_view = ent_hour_view = ent_minute_view = tk.Entry()
 
 
 def run_window():
     global ent_first_name, ent_last_name, ent_date, ent_hour, ent_minute, lbl_value
-    global ent_date_view, ent_hour_view, ent_minute_view, last_row
+    global ent_date_view, ent_hour_view, ent_minute_view
 
     retrieval_window = tk.Tk()
     retrieval_window.geometry("500x350")
-    lbl_first_name = create_label(col=2, row=1, text="First Name", window=retrieval_window)
-    ent_first_name = create_entry(col=3, row=1, text="first_name", window=retrieval_window)
-    lbl_last_name = create_label(col=2, row=2, text="Last Name", window=retrieval_window)
-    ent_last_name = create_entry(col=3, row=2, text="last_name", window=retrieval_window)
-    lbl_date = create_label(col=2, row=3, text="date", window=retrieval_window)
-    ent_date = create_DateEntry(col=3, row=3, window=retrieval_window)
-    lbl_time = create_label(col=2, row=4, text="hh:mm", window=retrieval_window)
-    ent_hour = create_spinbox(col=3, row=4, max=23, min=0, window=retrieval_window)
-    ent_minute = create_spinbox(col=4, row=4, max=59, min=0, window=retrieval_window)
+    ent_first_name = create_labeled_entry(
+        col=2,
+        row=1,
+        entry_text="first_name",
+        label_text="First Name",
+        window=retrieval_window)
 
-    lbl_date_view = create_label(col=2, row=5, text="date view", window=retrieval_window)
-    ent_date_view = create_DateEntry(col=3, row=5, window=retrieval_window)
-    lbl_time_view = create_label(col=2, row=6, text="hh:mm", window=retrieval_window)
-    ent_hour_view = create_spinbox(col=3, row=6, max=23, min=0, window=retrieval_window)
-    ent_minute_view = create_spinbox(col=4, row=6, max=59, min=0, window=retrieval_window)
+    ent_last_name = create_labeled_entry(
+        col=2,
+        row=2,
+        entry_text="last_name",
+        label_text="Last Name",
+        window=retrieval_window)
 
-    btn_submit = create_button(col=4, row=7, text="submit", command=retrieve, window=retrieval_window)
+    ent_date, ent_hour, ent_minute = create_datetime_entry(
+        col=2,
+        row=3,
+        date_label_text="date",
+        window=retrieval_window)
+
+    ent_date_view, ent_hour_view, ent_minute_view = create_datetime_entry(
+        col=2,
+        row=5,
+        date_label_text="date view",
+        window=retrieval_window)
+
+    create_button(col=4, row=7, text="submit", command=retrieve, window=retrieval_window)
     lbl_value = create_label(col=0, row=9, text="", window=retrieval_window, colspan=5, rowspan=10)
     retrieval_window.mainloop()
 
