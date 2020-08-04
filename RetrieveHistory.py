@@ -10,32 +10,51 @@ def run_window():
     global ent_first_name, ent_last_name, ent_start_date, ent_start_hour, ent_start_minute, lbl_value
     global ent_end_date, ent_end_hour, ent_end_minute, ent_loinc_num
     global ent_view_date, ent_view_hour, ent_view_minute
+
     retrieval_H_window = tk.Tk()
     retrieval_H_window.geometry("500x350")
-    create_label(col=2, row=0, text="loinc-num", window=retrieval_H_window)
-    ent_loinc_num = create_entry(col=3, row=0, text="loinc-num", window=retrieval_H_window)
-    create_label(col=2, row=1, text="First Name", window=retrieval_H_window)
-    ent_first_name = create_entry(col=3, row=1, text="first_name", window=retrieval_H_window)
-    create_label(col=2, row=2, text="Last Name", window=retrieval_H_window)
-    ent_last_name = create_entry(col=3, row=2, text="last_name", window=retrieval_H_window)
 
-    create_label(col=2, row=3, text="start date", window=retrieval_H_window)
-    ent_start_date = create_date_entry(col=3, row=3, window=retrieval_H_window)
-    create_label(col=2, row=4, text="hh:mm", window=retrieval_H_window)
-    ent_start_hour = create_spinbox(col=3, row=4, max_value=23, min_value=0, window=retrieval_H_window)
-    ent_start_minute = create_spinbox(col=4, row=4, max_value=59, min_value=0, window=retrieval_H_window)
+    ent_loinc_num = create_labeled_entry(
+        col=2,
+        row=0,
+        entry_text="loinc-num",
+        label_text="loinc-num",
+        window=retrieval_H_window)
 
-    create_label(col=2, row=5, text="end date", window=retrieval_H_window)
-    ent_end_date = create_date_entry(col=3, row=5, window=retrieval_H_window)
-    create_label(col=2, row=6, text=" hh:mm", window=retrieval_H_window)
-    ent_end_hour = create_spinbox(col=3, row=6, max_value=23, min_value=0, window=retrieval_H_window)
-    ent_end_minute = create_spinbox(col=4, row=6, max_value=59, min_value=0, window=retrieval_H_window)
+    ent_first_name = create_labeled_entry(
+        col=2,
+        row=1,
+        entry_text="loinc-num",
+        label_text="loinc-num",
+        window=retrieval_H_window)
 
-    create_label(col=2, row=7, text="date view", window=retrieval_H_window)
-    ent_view_date = create_date_entry(col=3, row=7, window=retrieval_H_window)
-    create_label(col=2, row=8, text="hh:mm", window=retrieval_H_window)
-    ent_view_hour = create_spinbox(col=3, row=8, max_value=23, min_value=0, window=retrieval_H_window)
-    ent_view_minute = create_spinbox(col=4, row=8, max_value=59, min_value=0, window=retrieval_H_window)
+    ent_last_name = create_labeled_entry(
+        col=2,
+        row=2,
+        entry_text="loinc-num",
+        label_text="loinc-num",
+        window=retrieval_H_window)
+
+    ent_start_date, ent_start_hour, ent_start_minute = create_datetime_entry(
+        col=2,
+        row=3,
+        date_label_text="start date",
+        window=retrieval_H_window,
+    )
+
+    ent_end_date, ent_end_hour, ent_end_minute = create_datetime_entry(
+        col=2,
+        row=5,
+        date_label_text="end date",
+        window=retrieval_H_window,
+    )
+
+    ent_start_date, ent_start_hour, ent_start_minute = create_datetime_entry(
+        col=2,
+        row=7,
+        date_label_text="date view",
+        window=retrieval_H_window,
+    )
 
     create_button(col=4, row=9, text="submit", command=retrieve_history, window=retrieval_H_window)
     lbl_value = create_label(col=4, row=10, text="", window=retrieval_H_window)
