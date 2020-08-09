@@ -1,5 +1,7 @@
 import pandas as pd
 import pandasql as ps
+from UI_Elements import *
+from datetime import datetime
 
 dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project1\\project_db_test_publish.xlsx"
 raz_path = "project_db_test_publish_1.xlsx"
@@ -18,9 +20,12 @@ def retrieve(first_name, last_name, valid_start_time, transaction_time,
     DB = DB.query("Transaction_time >= '" + transaction_time + "'")
 
     if limit is None:
-        DB = DB.query("LOINC-NUM >= '" + loinc_num + "'")
-        DB = DB.query("Valid_start_time >= '" + valid_start_time + "'")
-        DB = DB.query("Valid_start_time <= '" + valid_start_time_end + "'")
+        try:
+            DB = DB.query("LOINC-NUM >= '" + loinc_num + "'")
+            DB = DB.query("Valid_start_time >= '" + valid_start_time + "'")
+            DB = DB.query("Valid_start_time <= '" + valid_start_time_end + "'")
+        except:
+            DB=DB
         limit_clause = " ;"
     else:
         DB = DB.query("Valid_start_time == '" + valid_start_time + "'")
@@ -35,16 +40,31 @@ def retrieve_history(first_name, last_name, valid_start_time, transaction_time):
     return retrieve(first_name, last_name, valid_start_time, transaction_time)
 
 
-def delete():
-    DB = pd.read_excel(dvir_path)
-    q1 = "UPDATE DB SET deleted=1" \
-         " WHERE Valid_start_time=='2018-05-17 13:11' AND Transaction_time == '2020-05-21 10:00'"
-    answer = ps.sqldf(q1, locals())
+def delete(first_name="f",last_name="l",valid_start_time=None, transaction_time=None,
+           valid_start_time_end=None, limit=None, loinc_num=None ):
+    before_update = retrieve(first_name, last_name, valid_start_time, transaction_time,
+             valid_start_time_end, limit, loinc_num)
+    DB = pd.read_excel(raz_path)
+    union_part_1=pd.concat([DB, before_update, before_update]).drop_duplicates(keep=False)
+    union_part_2=before_update.replace(0,1)
+    union = pd.concat([union_part_1, union_part_2])
+    union.to_excel('project_db_test_publish_1.xlsx',index=False)
+    return union_part_2
 
 
-def update():
-    DB = pd.read_excel(dvir_path)
-    q1 = "insert into DB (First_name,Last_name,LOINC_NUM,Value,Unit,Valid_start_time,Transaction_time,deleted)" \
-         ""
-    answer = ps.sqldf(q1, locals())
-    return answer
+
+def update(loinc_num,first_name="f",last_name="l",value="v",unit="none",
+           valid_start_time="svt",transaction_time=datetime.now()):
+    DB = pd.read_excel(raz_path)
+    LOINC_NUM_DB=pd.read_csv('LoincTableCore.csv')
+    component=LOINC_NUM_DB.query("LOINC_NUM == '" + loinc_num + "'")
+    x=len(component)
+    if not x==1:
+        show_alert(title="bad loinc num", info="the given loinc number didnt typed well ")
+        return ""
+    component=component['COMPONENT'].to_list()[0]
+    new_row=[loinc_num, first_name, last_name, value, unit, valid_start_time, transaction_time, 0,component ]
+    DB.loc[len(DB)] = new_row
+    DB.to_excel('project_db_test_publish_1.xlsx',index=False)
+    return new_row
+
