@@ -123,4 +123,4 @@ def validate_not_empty(field):
 #         return 1 == 0
 
 
-run_window()
+#run_window()
