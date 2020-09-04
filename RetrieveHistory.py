@@ -1,7 +1,6 @@
 import DB_handler
 from UI_Elements import *
 from Retrieval import parse_date_time_input
-from tkinter import *
 
 dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project\\project_db_test_publish.xlsx"
 raz_path = "project_db_test_publish_1.xlsx"

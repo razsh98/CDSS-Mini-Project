@@ -11,19 +11,29 @@ def run_window():
     update_window = tk.Tk()
     update_window.geometry("500x350")
 
-    lbl_loinc = create_label(col=2, row=0, text="loinc number", window=update_window)
-    ent_loinc = create_entry(col=3, row=0, text="loinc_num", window=update_window)
-    lbl_name = create_label(col=2, row=1, text="name patient", window=update_window)
-    ent_name = create_entry(col=3, row=1, text="name", window=update_window)
+    ent_loinc = create_labeled_entry(
+        col=2,
+        row=0,
+        entry_text="11218-5",
+        label_text="loinc-num",
+        window=update_window)
+
+    ent_name = create_labeled_entry(
+        col=2,
+        row=1,
+        entry_text="name",
+        label_text="name patient",
+        window=update_window)
+
     lbl_date = create_label(col=2, row=2, text="date", window=update_window)
-    ent_date = create_date_entry(col=3, row=2, window=update_window)
+    ent_date = create_date_entry(col=3, row=2, window=update_window, day=18, month=5, year=2018)
     lbl_time = create_label(col=2, row=3, text="hh:mm", window=update_window)
     ent_hour = create_spinbox(col=3, row=3, max_value=23, min_value=0, window=update_window)
     ent_minute = create_spinbox(col=4, row=3, max_value=59, min_value=0, window=update_window)
 
     global ent_date_view, ent_hour_view, ent_minute_view
     lbl_date_view = create_label(col=2, row=4, text="date view", window=update_window)
-    ent_date_view = create_date_entry(col=3, row=4, window=update_window)
+    ent_date_view = create_date_entry(col=3, row=4, window=update_window, day=21, month=5, year=2018)
     lbl_time_view = create_label(col=2, row=5, text="hh:mm", window=update_window)
     ent_hour_view = create_spinbox(col=3, row=5, max_value=23, min_value=0, window=update_window)
     ent_minute_view = create_spinbox(col=4, row=5, max_value=59, min_value=0, window=update_window)
@@ -39,7 +49,7 @@ def run_window():
 
 
 def update():
-    first_name = str(ent_name.get()).split(sep= " ")[0]
+    first_name = str(ent_name.get()).split(sep=" ")[0]
     last_name = str(ent_name.get()).split(sep=" ", maxsplit=1)[1]
 
     valid_start_time = parse_date_time_input(ent_date, ent_hour, ent_minute)
