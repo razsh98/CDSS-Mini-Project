@@ -17,7 +17,7 @@ def retrieve(first_name, last_name, valid_start_time, transaction_time,
 
     DB = DB.query("First_name == '" + first_name + "'")
     DB = DB.query("Last_name == '" + last_name + "'")
-    DB = DB[DB['Transaction_time'] >= transaction_time]
+    DB = DB[DB['Transaction_time'] <= transaction_time]
 
     if limit is None:
         try:
