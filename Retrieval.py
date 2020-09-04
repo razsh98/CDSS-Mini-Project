@@ -1,13 +1,9 @@
 import DB_handler
 from UI_Elements import *
 from datetime import datetime
-from tkinter import IntVar, Checkbutton
 
 dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project\\project_db_test_publish.xlsx"
 raz_path = "project_db_test_publish_1.xlsx"
-
-# ent_first_name = ent_last_name = ent_date = ent_hour = ent_minute = lbl_value = tk.Entry()
-# ent_date_view = ent_hour_view = ent_minute_view = tk.Entry()
 
 
 def run_window():
@@ -19,14 +15,14 @@ def run_window():
     ent_first_name = create_labeled_entry(
         col=2,
         row=1,
-        entry_text="first_name",
+        entry_text="Eli",
         label_text="First Name",
         window=retrieval_window)
 
     ent_last_name = create_labeled_entry(
         col=2,
         row=2,
-        entry_text="last_name",
+        entry_text="Call",
         label_text="Last Name",
         window=retrieval_window)
 
@@ -34,12 +30,18 @@ def run_window():
         col=2,
         row=3,
         date_label_text="date",
+        default_day=18,
+        default_month=5,
+        default_year=2018,
         window=retrieval_window)
 
     ent_date_view, ent_hour_view, ent_minute_view = create_datetime_entry(
         col=2,
         row=5,
         date_label_text="date view",
+        default_day=22,
+        default_month=5,
+        default_year=2018,
         window=retrieval_window)
 
     var, checkbox = create_checkbox(
@@ -78,10 +80,8 @@ def retrieve():
             transaction_time=transaction_time,
             limit=1
         )
-        spaced_entries = ''
-        for entry in answer.iterrows():
-            spaced_entries = repr(entry) + '\n'
-        lbl_value['text'] = spaced_entries
+
+        create_popup(answer=answer)
 
 
 def parse_date_time_input(date, hours, minutes):
@@ -129,11 +129,6 @@ def validate_not_empty(field):
         info="Error: Mandatory fields are empty!"
     )
     return False
-
-
-# def input_check(name, date, hours, minutes):
-#     if name == "" or not isinstance(hours, int) or not isinstance(minutes, int):
-#         return 1 == 0
 
 
 # run_window()

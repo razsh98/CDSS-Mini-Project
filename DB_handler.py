@@ -17,7 +17,7 @@ def retrieve(first_name, last_name, valid_start_time, transaction_time,
 
     if limit is None:
         try:
-            DB = DB[DB['LOINC-NUM'] >= loinc_num]
+            DB = DB[DB['LOINC_NUM'] == loinc_num]
 
             DB = DB[DB['Valid_start_time'] >= valid_start_time]
 

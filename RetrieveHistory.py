@@ -1,6 +1,7 @@
 import DB_handler
 from UI_Elements import *
 from Retrieval import parse_date_time_input
+from tkinter import *
 
 dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project\\project_db_test_publish.xlsx"
 raz_path = "project_db_test_publish_1.xlsx"
@@ -17,28 +18,31 @@ def run_window():
     ent_loinc_num = create_labeled_entry(
         col=2,
         row=0,
-        entry_text="loinc-num",
+        entry_text="11218-5",
         label_text="loinc-num",
         window=retrieval_H_window)
 
     ent_first_name = create_labeled_entry(
         col=2,
         row=1,
-        entry_text="loinc-num",
-        label_text="loinc-num",
+        entry_text="Eyal",
+        label_text="First Name",
         window=retrieval_H_window)
 
     ent_last_name = create_labeled_entry(
         col=2,
         row=2,
-        entry_text="loinc-num",
-        label_text="loinc-num",
+        entry_text="Rothman",
+        label_text="Last Name",
         window=retrieval_H_window)
 
     ent_start_date, ent_start_hour, ent_start_minute = create_datetime_entry(
         col=2,
         row=3,
         date_label_text="start date",
+        default_day=17,
+        default_month=5,
+        default_year=2018,
         window=retrieval_H_window,
     )
 
@@ -46,13 +50,19 @@ def run_window():
         col=2,
         row=5,
         date_label_text="end date",
+        default_day=20,
+        default_month=5,
+        default_year=2018,
         window=retrieval_H_window,
     )
 
-    ent_start_date, ent_start_hour, ent_start_minute = create_datetime_entry(
+    ent_view_date, ent_view_hour, ent_view_minute = create_datetime_entry(
         col=2,
         row=7,
         date_label_text="date view",
+        default_day=22,
+        default_month=5,
+        default_year=2018,
         window=retrieval_H_window,
     )
 
@@ -81,12 +91,10 @@ def retrieve_history():
         valid_start_time_end=valid_start_time_to,
         transaction_time=transaction_time,
     )
-    spaced_entries = ''
-    for entry in answer.iterrows():
-        spaced_entries = repr(entry) + '\n'
-    lbl_value['text'] = spaced_entries
+
+    create_popup(answer=answer)
 
 
-def input_check(name, date, hours, minutes):
+def input_check(name, hours, minutes):
     if name == "" or not isinstance(hours, int) or not isinstance(minutes, int):
         return 1 == 0
