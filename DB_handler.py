@@ -27,7 +27,7 @@ def retrieve(first_name, last_name, valid_start_time, transaction_time,
         limit_clause = " ;"
     else:
         DB = DB[DB['Valid_start_time'] == valid_start_time]
-        # DB = DB[DB['deleted'] == "1"]
+        DB = DB[DB['deleted'] != 1]
         limit_clause = "LIMIT " + str(limit) + " ;"
 
     q1 = "SELECT * FROM DB ORDER BY Transaction_time DESC " + limit_clause

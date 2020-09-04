@@ -57,7 +57,7 @@ def create_datetime_entry(col, row, date_label_text, window, time_label_text="hh
 
 
 def create_checkbox(col, row, label_text, window):
-    var = tk.BooleanVar()
+    var = tk.IntVar(master=window)
     checkbox = tk.Checkbutton(window, text=label_text, variable=var, onvalue=1, offvalue=0)
     checkbox.grid(column=col, row=row)
     return var, checkbox
