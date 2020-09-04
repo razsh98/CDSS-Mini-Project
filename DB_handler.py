@@ -17,25 +17,20 @@ def retrieve(first_name, last_name, valid_start_time, transaction_time,
 
     DB = DB.query("First_name == '" + first_name + "'")
     DB = DB.query("Last_name == '" + last_name + "'")
-    filter_mask = DB['Transaction_time'] >= transaction_time
-    DB = DB[filter_mask]
+    DB = DB[DB['Transaction_time'] >= transaction_time]
 
     if limit is None:
         try:
-            filter_mask = DB['LOINC-NUM'] >= loinc_num
-            DB = DB[filter_mask]
+            DB = DB[DB['LOINC-NUM'] >= loinc_num]
 
-            filter_mask = DB['Valid_start_time'] >= valid_start_time
-            DB = DB[filter_mask]
+            DB = DB[DB['Valid_start_time'] >= valid_start_time]
 
-            filter_mask = DB['Valid_start_time'] <= valid_start_time_end
-            DB = DB[filter_mask]
+            DB = DB[DB['Valid_start_time'] <= valid_start_time_end]
         except:
             DB = DB
         limit_clause = " ;"
     else:
-        filter_mask = DB['Valid_start_time'] == valid_start_time
-        DB = DB[filter_mask]
+        DB = DB[DB['Valid_start_time'] == valid_start_time]
         limit_clause = "LIMIT " + str(limit) + " ;"
 
     q1 = "SELECT * FROM DB ORDER BY Transaction_time DESC " + limit_clause
