@@ -10,10 +10,6 @@ raz_path = "project_db_test_publish_1.xlsx"
 def retrieve(first_name, last_name, valid_start_time, transaction_time,
              valid_start_time_end=None, limit=None, loinc_num=None):
     DB = pd.read_excel(raz_path)
-    # DB = DB.query("First_name  == 'Eyal'")
-    # DB = DB.query("Last_name == 'Rothman'")
-    # DB = DB.query("Valid_start_time == '2018-05-17 13:11'")
-    # DB = DB.query("Transaction_time <= '2020-05-21 10:00'")
 
     DB = DB.query("First_name == '" + first_name + "'")
     DB = DB.query("Last_name == '" + last_name + "'")
@@ -31,6 +27,7 @@ def retrieve(first_name, last_name, valid_start_time, transaction_time,
         limit_clause = " ;"
     else:
         DB = DB[DB['Valid_start_time'] == valid_start_time]
+        # DB = DB[DB['deleted'] == "1"]
         limit_clause = "LIMIT " + str(limit) + " ;"
 
     q1 = "SELECT * FROM DB ORDER BY Transaction_time DESC " + limit_clause

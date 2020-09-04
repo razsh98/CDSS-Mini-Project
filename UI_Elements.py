@@ -56,6 +56,13 @@ def create_datetime_entry(col, row, date_label_text, window, time_label_text="hh
     return ent_date, ent_hour, ent_minute
 
 
+def create_checkbox(col, row, label_text, window):
+    var = tk.BooleanVar()
+    checkbox = tk.Checkbutton(window, text=label_text, variable=var, onvalue=1, offvalue=0)
+    checkbox.grid(column=col, row=row)
+    return var, checkbox
+
+
 def show_alert(title="Title", info="a Tk MessageBox"):
     messagebox.showinfo(title, info)
 
