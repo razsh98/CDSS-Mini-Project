@@ -49,7 +49,7 @@ def create_spinbox(col, row, min_value, max_value, window):
 
 def create_datetime_entry(col, row, date_label_text, window, time_label_text="hh:mm"):
     create_label(col=col, row=row, text=date_label_text, window=window)
-    ent_date = create_date_entry(col=col+1, row=3, window=window)
+    ent_date = create_date_entry(col=col+1, row=row, window=window)
     create_label(col=col, row=row+1, text=time_label_text, window=window)
     ent_hour = create_spinbox(col=col+1, row=row+1, max_value=23, min_value=0, window=window)
     ent_minute = create_spinbox(col=col+2, row=row+1, max_value=59, min_value=0, window=window)

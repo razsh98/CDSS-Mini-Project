@@ -1,5 +1,6 @@
 import DB_handler
 from UI_Elements import *
+from datetime import datetime
 
 dvir_path = "C:\\Users\\dvir levi\\PycharmProjects\\CDSS-Mini-Project\\project_db_test_publish.xlsx"
 raz_path = "project_db_test_publish_1.xlsx"
@@ -83,7 +84,8 @@ def parse_date_time_input(date, hours, minutes):
             hours_val = "0" + hours_val
         if int(minutes_val) < 10:
             minutes_val = "0" + minutes_val
-        return date_val + " " + hours_val + ":" + minutes_val
+        return datetime.strptime(date_val + " " + hours_val + ":" + minutes_val + ":00", '%m/%d/%y %H:%M:%S')
+        # return date_val + " " + hours_val + ":" + minutes_val + ":00"
     else:
         return ""
 
